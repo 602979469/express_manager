@@ -1,0 +1,68 @@
+{
+  "name" : "Courier",
+  "preName" : "",
+  "comment" : null,
+  "templateGroupName" : "Default",
+  "fullColumn" : [ {
+    "name" : "id",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "name",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "sysPhone",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "idCardNumber",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "password",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "sendNumber",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "registerTime",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "loginTime",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.kaikeba",
+  "savePath" : "./src/com/kaikeba",
+  "saveModelName" : "Express_System"
+}
