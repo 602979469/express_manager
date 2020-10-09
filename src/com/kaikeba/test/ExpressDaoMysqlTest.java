@@ -171,8 +171,8 @@ public class ExpressDaoMysqlTest {
             for (int i = 0; i < username.length; i++) {
                 Express express = new Express();
                 express.setUsername(username[i]);
-                express.setCompany("阿联酋速运");
-                express.setSysPhone("15727851996");
+                express.setCompany("京东速运");
+                express.setSysPhone("15858298809");
                 if (i<10){
                     express.setUserPhone("1380491588"+i);
                 }else{

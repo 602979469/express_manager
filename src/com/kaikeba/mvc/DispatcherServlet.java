@@ -27,7 +27,8 @@ public class DispatcherServlet extends javax.servlet.http.HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1.    获取用户请求的uri   /xx.do
         String uri = req.getRequestURI();
-        HandlerMapping.MVCMapping mapping = HandlerMapping.get(uri);if( mapping == null){
+        HandlerMapping.MVCMapping mapping = HandlerMapping.get(uri);
+        if( mapping == null){
             resp.sendError(404,"MVC：映射地址不存在："+uri);
             return;
         }

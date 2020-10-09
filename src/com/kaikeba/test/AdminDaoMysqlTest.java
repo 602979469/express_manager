@@ -2,6 +2,7 @@ package com.kaikeba.test;
 
 import com.kaikeba.dao.BaseAdminDao;
 import com.kaikeba.dao.imp.AdminDaoMysql;
+import com.kaikeba.service.CourierService;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -40,8 +41,6 @@ public class AdminDaoMysqlTest {
      */
     @Test
     public void testLogin() throws Exception {
-        System.out.println(dao.login("root", "root"));
+        System.out.println(CourierService.login("15858298809", "123456"));
     }
-
-
 } 

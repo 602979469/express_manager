@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,12 +35,23 @@ public class WebUtil {
 
     private static HttpSession session;
 
+
     public static void setSession(HttpSession session) {
         WebUtil.session = session;
     }
 
     public static HttpSession getSession() {
         return session;
+    }
+
+
+    public static void setLoginSMS(String userPhone,String code){
+        session.setAttribute(userPhone,code);
+    }
+
+    public static boolean getLoginSMS(String userPhone,String code){
+        String attribute = (String) session.getAttribute(userPhone);
+        return Objects.equals(attribute,code);
     }
 
     /**
@@ -129,16 +137,24 @@ public class WebUtil {
         return format.format(date);
     }
 
+    public static boolean sendLoginMessage(String phoneNumber, String code){
+        return sendTemplate(phoneNumber,code,"SMS_204275322");
+    }
+
+    public static boolean sendTakeCodeMessage(String phoneNumber, String code){
+        return sendTemplate(phoneNumber,code,"SMS_204111140");
+    }
+
+
     /**
      * 发送
-     * 您有${company}包裹已经到${area}，
-     * 取件码${code}。 询${sysPhone}，营业时间09:00-20:59
+     * [快递e站]您的验证码：${code},您正在进行身份验证，打死不告诉别人。
      *
      * @param phoneNumber 电话号码
      * @param code        代码
      * @return boolean
      */
-    public static boolean send(String phoneNumber, String sysPhone, String company, String code) {
+    private static boolean sendTemplate(String phoneNumber, String code,String template) {
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4G1VYLEusvr8FeoAyT4Y", "2OyykFIyDjLDoM7hKhaGGbjyyhqgvs");
         IAcsClient client = new DefaultAcsClient(profile);
         CommonRequest request = new CommonRequest();
@@ -149,7 +165,7 @@ public class WebUtil {
         request.putQueryParameter("RegionId", "cn-hangzhou");
         request.putQueryParameter("PhoneNumbers", phoneNumber);
         request.putQueryParameter("SignName", "快递e站");
-        request.putQueryParameter("TemplateCode", "SMS_204111140");
+        request.putQueryParameter("TemplateCode", template);
         request.putQueryParameter("TemplateParam", "{\"code\":\""+code+"\"}");
         try {
             CommonResponse response = client.getCommonResponse(request);

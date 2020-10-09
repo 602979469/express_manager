@@ -5,6 +5,7 @@ import com.kaikeba.bean.Message;
 import com.kaikeba.mvc.ResponseBody;
 import com.kaikeba.service.AdminService;
 import com.kaikeba.service.CourierService;
+import com.kaikeba.service.UserService;
 import com.kaikeba.util.WebUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,37 +42,36 @@ public class AdminController {
         return WebUtil.toJson(message);
     }
 
-//    /**
-//     * 登录
-//     *
-//     * @param request  请求
-//     * @param response 响应
-//     * @return {@link String}
-//     */
-//    @ResponseBody("/admin/login.do")
-//    public String login(HttpServletRequest request, HttpServletResponse response) {
-//        //1.    接参数
-//        String username = request.getParameter("username");
-//        String password = request.getParameter("password");
-//        //2.    调用Service传参数，并获取结果
-//        boolean result = AdminService.login(username, password);
-//        //3.    根据结果，准备不同的返回数据
-//        Message msg = null;
-//        if (result) {
-//            //{status:0,result:"登录成功"}
-//            msg = new Message(0, "登录成功");
-//            //登录时间 和 ip的更新
-//            Date date = new Date();
-//            String ip = request.getRemoteAddr();
-//            AdminService.updateLoginTimeAndIp(username, ip);
-//            request.getSession().setAttribute("adminUserName", username);
-//        } else {
-//            //{status:-1,result:"用户名或者密码错误"}
-//            msg = new Message(-1, "登录失败");
-//        }
-//        //4.    将数据转换为JSON
-//        return WebUtil.toJson(msg);
-//    }
+    @ResponseBody("/admin/loginSMS.do")
+    public String loginSMS(HttpServletRequest request,HttpServletResponse response){
+        String userPhone=request.getParameter("userPhone");
+        String code=request.getParameter("code");
+        Message message = new Message();
+        if (WebUtil.getLoginSMS(userPhone,code)){
+            message.setStatus(0);
+            message.setResult("用户登录成功");
+        }else{
+            message.setStatus(-1);
+            message.setResult("登录失败，验证码不正确！");
+        }
+        return WebUtil.toJson(message);
+    }
+
+    @ResponseBody("/admin/sendLoginSMS.do")
+    public String sendLoginSMS(HttpServletRequest request,HttpServletResponse response){
+        String userPhone=request.getParameter("userPhone");
+        String code=WebUtil.getCode();
+        WebUtil.setLoginSMS(userPhone,code);
+        Message message = new Message();
+        if (userPhone!=null){
+            message.setStatus(0);
+            message.setResult("短信已发送");
+        }else{
+            message.setStatus(1);
+            message.setResult("短信发送失败，请检查手机号是否正确！");
+        }
+        return WebUtil.toJson(message);
+    }
 
     @ResponseBody("/admin/login.do")
     public String courierLogin(HttpServletRequest request,HttpServletResponse response){

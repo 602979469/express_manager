@@ -95,7 +95,7 @@ public class ExpressService {
         boolean flag = dao.insert(express);
         //录入成功,发送短信
         if (flag) {
-            WebUtil.send(express.getUserPhone(),express.getSysPhone(),express.getCompany(), express.getCode());
+            WebUtil.sendTakeCodeMessage(express.getUserPhone(),express.getCode());
         }
         return flag;
     }
