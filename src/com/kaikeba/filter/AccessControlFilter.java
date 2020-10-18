@@ -30,7 +30,7 @@ public class AccessControlFilter implements Filter {
         if(userName != null || url.endsWith("login.html") || url.endsWith("/admin/login.do")) {
             chain.doFilter(req, resp);
         } else {
-            response.sendRedirect(request.getContextPath()+"/login.html");
+            response.sendRedirect(request.getContextPath()+"login.html");
         }
     }
 }

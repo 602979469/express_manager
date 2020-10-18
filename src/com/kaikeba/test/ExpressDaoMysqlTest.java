@@ -60,7 +60,6 @@ public class ExpressDaoMysqlTest {
         for (Express express : all) {
             System.out.println(express);
         }
-
     }
 
     /**
@@ -68,7 +67,7 @@ public class ExpressDaoMysqlTest {
      */
     @Test
     public void testFindByNumber() throws Exception {
-        System.out.println(dao.findByNumber("123"));
+        System.out.println(dao.findByNumber("2459950"));
     }
 
     /**

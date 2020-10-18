@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Express_System.iml" filepath="$PROJECT_DIR$/Express_System.iml" />
-      <module fileurl="file://$PROJECT_DIR$/wx_express/wx_express.iml" filepath="$PROJECT_DIR$/wx_express/wx_express.iml" />
     </modules>
   </component>
 </project>

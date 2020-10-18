@@ -97,6 +97,9 @@ public class CourierService {
      */
     public static Courier login(String sysPhone, String password) {
         Courier courier = dao.findBySysPhone(sysPhone);
+        if (courier==null){
+            return null;
+        }
         if (courier.getPassword().equals(password)){
             return courier;
         }

@@ -54,7 +54,7 @@ var checkPassword = function (password) {
 }
 
 var checkName=function(name){
-    var patrn=/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
+    var patrn=/^[\u4E00-\u9FA5]{2,20}$/;
     if (!patrn.test(name)){
         layer.msg("姓名格式不合法!");
         return false;

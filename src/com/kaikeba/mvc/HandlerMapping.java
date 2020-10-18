@@ -61,6 +61,9 @@ public class HandlerMapping {
                         }
                     }
                 }
+                for (Map.Entry<String, MVCMapping> string : data.entrySet()) {
+                    System.out.println(string.getKey()+":"+string.getValue());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
